@@ -1,9 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://audio_manager.gd" type="Script" id=1]
+[ext_resource path="res://tracks/main/A.wav" type="AudioStream" id=2]
+[ext_resource path="res://tracks/main/B.wav" type="AudioStream" id=3]
+[ext_resource path="res://tracks/sub/C1.wav" type="AudioStream" id=4]
+[ext_resource path="res://tracks/sub/C2.wav" type="AudioStream" id=5]
+[ext_resource path="res://tracks/sub/C.wav" type="AudioStream" id=6]
+[ext_resource path="res://tracks/D.wav" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
-resource_name = "next"
+resource_name = "end_phase"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sub:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -80.0 ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
@@ -18,8 +38,7 @@ tracks/0/keys = {
 "values": [ 0.0, -80.0 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "play"
+[sub_resource type="Animation" id=3]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:volume_db")
 tracks/0/interp = 1
@@ -33,9 +52,32 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sub:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -80.0, 0.0 ]
+}
+
 [node name="audio" type="AudioStreamPlayer"]
+bus = "main"
 script = ExtResource( 1 )
+tracks_list = [ ExtResource( 2 ), ExtResource( 3 ) ]
+sub_tracks_list = [ [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], [ ExtResource( 7 ) ] ]
+path_to_audio = "res://tracks"
+
+[node name="Sub" type="AudioStreamPlayer" parent="."]
+bus = "sub"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/next = SubResource( 1 )
-anims/play = SubResource( 2 )
+anims/end_phase = SubResource( 1 )
+anims/next = SubResource( 2 )
+anims/play = SubResource( 3 )
+anims/start_phase = SubResource( 4 )
