@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://audio_manager.gd" type="Script" id=1]
 [ext_resource path="res://tracks/main/A.wav" type="AudioStream" id=2]
@@ -12,76 +12,15 @@
 [ext_resource path="res://tracks/sub/bass2.wav" type="AudioStream" id=10]
 [ext_resource path="res://tracks/sub/piano hits.wav" type="AudioStream" id=11]
 
-[sub_resource type="Animation" id=1]
-resource_name = "end_phase"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sub:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.1, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 5.0
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, -80.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-
-[sub_resource type="Animation" id=4]
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sub:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -80.0, 0.0 ]
-}
-
-[node name="audio" type="AudioStreamPlayer"]
-bus = "main"
+[node name="audio" type="Node"]
 script = ExtResource( 1 )
 tracks_list = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
 sub_tracks_list = [ [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ], [ ExtResource( 8 ) ], [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ] ]
 path_to_audio = "res://tracks"
 
 [node name="Sub" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
 bus = "sub"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/end_phase = SubResource( 1 )
-anims/next = SubResource( 2 )
-anims/play = SubResource( 3 )
-anims/start_phase = SubResource( 4 )
+[node name="main" type="AudioStreamPlayer" parent="."]
+bus = "main"
