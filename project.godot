@@ -8,21 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "action_audio",
+"language": "GDScript",
+"path": "res://ٍٍScripts/audio/action_audio.gd"
+} ]
 _global_script_class_icons={
-
+"action_audio": ""
 }
 
 [application]
 
 config/name="Audio_player"
-run/main_scene="res://Control.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Scenes/Control.tscn"
+
+[audio]
+
+default_bus_layout="res://Assets/In_game_resource/default_bus_layout.tres"
 
 [autoload]
 
-Audio_Manager="*res://Audio_Manager.tscn"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
+Audio_Manager="*res://Prefabs/Audio_Manager.tscn"
+CustomFunctions="*res://ٍٍScripts/custom_functions.gd"

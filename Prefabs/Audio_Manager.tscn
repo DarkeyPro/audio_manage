@@ -1,0 +1,25 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/Audios/Tracks/sub/C2.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Audios/Tracks/main/piano lead.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Audios/Tracks/main/A.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audios/Tracks/sub/bass1.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audios/Tracks/sub/C1.wav" type="AudioStream" id=5]
+[ext_resource path="res://ٍٍScripts/audio/audio_manager.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Audios/Tracks/D.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Audios/Tracks/sub/piano hits.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Audios/Tracks/main/B.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Audios/Tracks/sub/C.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Audios/Tracks/sub/bass2.wav" type="AudioStream" id=11]
+
+[node name="audio" type="Node"]
+script = ExtResource( 6 )
+tracks_list = [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 2 ) ]
+sub_tracks_list = [ [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 10 ) ], [ ExtResource( 7 ) ], [ ExtResource( 4 ), ExtResource( 11 ), ExtResource( 8 ) ] ]
+
+[node name="Sub" type="AudioStreamPlayer" parent="."]
+volume_db = -80.0
+bus = "sub"
+
+[node name="main" type="AudioStreamPlayer" parent="."]
+bus = "main"

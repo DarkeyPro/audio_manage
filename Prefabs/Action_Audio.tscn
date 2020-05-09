@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ٍٍScripts/audio/action_audio.gd" type="Script" id=1]
+
+
+[node name="Action_Audio" type="Node"]
+script = ExtResource( 1 )
+audio_list = [ null, null, null ]
+type = 1
